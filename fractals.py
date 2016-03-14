@@ -1,64 +1,65 @@
-#Fractals
+# Fractals
 import turtle
+
 my_turtle = turtle.Turtle()
 my_turtle.penup()
-my_turtle.setpos(-300, 300)
+my_turtle.setpos(-300, 200)
 my_turtle.pendown()
-turtle.speed(0)
-def Algorithm_Koch_Curve(my_turtle, length, degree):
-    
+
+
+def algorithm_koch_curve(koch_turtle, length, degree):
+    for x in range(3):
+        algorithm_koch_curve_recur(koch_turtle, length, degree)
+        koch_turtle.right(120)
+
+
+def algorithm_koch_curve_recur(koch_turtle, length, degree):
     if degree == 0:
-        my_turtle.forward(length)
+        koch_turtle.forward(length)
     else:
-        length = length / 3
+        length /= 3
         degree -= 1
-        Algorithm_Koch_Curve(my_turtle, length, degree) # First segment
-        my_turtle.left(60)
-        Algorithm_Koch_Curve(my_turtle, length, degree) # Second segment
-        my_turtle.right(120)
-        Algorithm_Koch_Curve(my_turtle, length, degree) # Third segment
-        my_turtle.left(60)
-        Algorithm_Koch_Curve(my_turtle, length, degree) # Fourth segment
+        algorithm_koch_curve_recur(koch_turtle, length, degree)  # First segment
+        koch_turtle.left(60)
+        algorithm_koch_curve_recur(koch_turtle, length, degree)  # Second segment
+        koch_turtle.right(120)
+        algorithm_koch_curve_recur(koch_turtle, length, degree)  # Third segment
+        koch_turtle.left(60)
+        algorithm_koch_curve_recur(koch_turtle, length, degree)  # Fourth segment
 
 
-##def serpinski_tri(turtle, length, degree):
-##    for x in range(3):
-##        turtle.forward(length)
-##        my_turtle.right(120)
-##
-##    length = length /2
-##    turtle.forward(length)
-##    my_turtle.right(60)
-##    position = turtle.pos()
-##    recur_ser_tri(turtle, length, degree, position)
-##    
-##
-##def recur_ser_tri(turtle, length, degree, position):
-##    if degree == 0:
-##        pass
-##    else:
-##        degree -= 1
-##        for x in range(3):
-##            turtle.forward(length/2)
-##            position = turtle.pos()
-##            recur_ser_tri(turtle, length/2, degree, position)
-##            turtle.forward(length/2)
-##            my_turtle.right(120)
-##
-##        length = length/2
-##        my_turtle.left(60)
-##        turtle.forward(length)
-##        my_turtle.right(60)
-##        my_turtle.penup()
-##        my_turtle.setpos(position)
-##        my_turtle.pendown()
+def serpinski_tri(ser_turtle, length, degree):
+    if degree == 0:
+        pass
+    else:
+        degree -= 1
+        top_position = ser_turtle.pos()
+        for x in range(3):
+            ser_turtle.forward(length)
+            ser_turtle.right(120)
+
+        ser_turtle.penup()
+        ser_turtle.setpos(top_position)
+        ser_turtle.forward(length)
+        ser_turtle.pendown()
+
+        for x in range(3):
+            ser_turtle.forward(length)
+            ser_turtle.right(120)
+
+        ser_turtle.penup()
+        ser_turtle.setpos(top_position)
+        ser_turtle.right(60)
+        ser_turtle.forward(length)
+        ser_turtle.pendown()
+        ser_turtle.left(60)
+
+        for x in range(3):
+            ser_turtle.forward(length)
+            ser_turtle.right(120)
 
 "draw the triangles a stage at a time. draw 3, this will make the outer triangle, then continue downwards"
-  
-  
 
-    
-    
+# algorithm_koch_curve(my_turtle, 200, 3)
 
-#Algorithm_Koch_Curve(my_turtle, 300, 3)
-serpinski_tri(my_turtle, 400, 3)
+serpinski_tri(my_turtle, 200, 3)
