@@ -28,24 +28,27 @@ def algorithm_koch_curve_recur(koch_turtle, length, degree):
         algorithm_koch_curve_recur(koch_turtle, length, degree)  # Fourth segment
 
 
-def serpinski_tri(ser_turtle, length, degree):
+def serpinski_tri(ser_turtle, length, degree, top_position):
     if degree == 0:
         pass
     else:
         degree -= 1
-        top_position = ser_turtle.pos()
+
         for x in range(3):
             ser_turtle.forward(length)
             ser_turtle.right(120)
+        serpinski_tri(ser_turtle, length / 2, degree, top_position)
 
         ser_turtle.penup()
         ser_turtle.setpos(top_position)
         ser_turtle.forward(length)
         ser_turtle.pendown()
+        new_position = ser_turtle.pos()
 
         for x in range(3):
             ser_turtle.forward(length)
             ser_turtle.right(120)
+        serpinski_tri(ser_turtle, length / 2, degree, new_position)
 
         ser_turtle.penup()
         ser_turtle.setpos(top_position)
@@ -53,13 +56,15 @@ def serpinski_tri(ser_turtle, length, degree):
         ser_turtle.forward(length)
         ser_turtle.pendown()
         ser_turtle.left(60)
+        new_position = ser_turtle.pos()
 
         for x in range(3):
             ser_turtle.forward(length)
             ser_turtle.right(120)
+        serpinski_tri(ser_turtle, length / 2, degree, new_position)
 
 "draw the triangles a stage at a time. draw 3, this will make the outer triangle, then continue downwards"
-
 # algorithm_koch_curve(my_turtle, 200, 3)
 
-serpinski_tri(my_turtle, 200, 3)
+position = my_turtle.pos()
+serpinski_tri(my_turtle, 200, 5, position)
