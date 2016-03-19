@@ -64,7 +64,7 @@ def serpinski_tri(ser_turtle, length, degree, top_position):
         serpinski_tri(ser_turtle, length / 2, degree, new_position)
 
 "draw the triangles a stage at a time. draw 3, this will make the outer triangle, then continue downwards"
-# algorithm_koch_curve(my_turtle, 200, 3)
+algorithm_koch_curve(my_turtle, 200, 3)
 
 position = my_turtle.pos()
-serpinski_tri(my_turtle, 200, 5, position)
+# serpinski_tri(my_turtle, 200, 5, position)
